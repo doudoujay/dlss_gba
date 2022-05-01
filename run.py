@@ -15,8 +15,7 @@ model_path = './DLSS/generator.h5'
 # Boolean flag, set to True if the data has pngs to remove alpha layer from images
 png = True
 
-
-def upscale(img: Image, model):
+def upscale(img: Image, model, counter):
     # original image
     x = img.resize((input_dimensions[0], input_dimensions[1]))
 
@@ -39,8 +38,10 @@ def upscale(img: Image, model):
         output_dimensions[0], output_dimensions[1], output_dimensions[2])
     np.clip(result, 0, 255, out=result)
     result = result.astype('uint8')
-    plt.imshow(result)
-
+    # print(result)
+    # plt.imshow(result)
+    im = Image.fromarray(result)
+    im.save(f'./frames/{counter}.png')
 
 model = load_model(model_path)
 pyboy = PyBoy('rom/red.gb')
@@ -48,6 +49,8 @@ pyboy = PyBoy('rom/red.gb')
 #     pil_image = pyboy.screen_image()
 #     print(pil_image)
 #     pass
-pyboy.tick()
-pil_image = pyboy.screen_image()
-upscale(pil_image)
+counter = 0
+while not pyboy.tick():
+    pil_image = pyboy.screen_image()
+    upscale(pil_image, model, counter)
+    counter += 1
