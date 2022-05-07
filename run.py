@@ -15,6 +15,7 @@ model_path = './DLSS/generator.h5'
 # Boolean flag, set to True if the data has pngs to remove alpha layer from images
 png = True
 
+
 def upscale(img: Image, model, counter):
     # original image
     x = img.resize((input_dimensions[0], input_dimensions[1]))
@@ -42,6 +43,7 @@ def upscale(img: Image, model, counter):
     # plt.imshow(result)
     im = Image.fromarray(result)
     im.save(f'./frames/{counter}.png')
+
 
 model = load_model(model_path)
 pyboy = PyBoy('rom/red.gb')
