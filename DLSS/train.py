@@ -1,6 +1,6 @@
 from tensorflow.keras.layers import Input, Dense, Reshape, Flatten
-from tensorflow.keras.layers.advanced_activations import LeakyReLU
-from tensorflow.keras.layers.convolutional import UpSampling2D, Conv2D, MaxPooling2D
+from tensorflow.keras.layers import LeakyReLU
+from tensorflow.keras.layers import UpSampling2D, Conv2D, MaxPooling2D
 from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.optimizers import Adam
 from sklearn.utils import shuffle
