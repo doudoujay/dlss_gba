@@ -1,0 +1,12 @@
+input_path = '~/input'
+output_path = '~/output'
+input_dimensions = (128, 128, 3)
+output_dimensions = (256, 256, 3)
+super_sampling_ratio = int(output_dimensions[0] / input_dimensions[0] / 2)
+model_path = "~/model_path"
+interval = 5
+epoch = 100
+batch = 25
+conv_filters = 64
+kernel = (5, 5)
+png = True
